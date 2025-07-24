@@ -15,7 +15,7 @@
             --accent: #F5F0E6;       /* Cream (10%) */
             --coffee-light: #C8A17A;
             --leaf: #556B2F;
-            --gold: #D4AF37;         /* Warna emas baru */
+            --gold: #D4AF37;
         }
         
         * {
@@ -40,28 +40,21 @@
         
         /* Navbar */
         .navbar {
-            background-color: rgba(15, 10, 10, 0.8);
+            background-color: rgba(15, 10, 10, 0.9);
             position: fixed;
-            top: 0;
+            top: 10px;
             width: 90%;
             left: 5%;
             z-index: 1000;
-            padding: 15px 0;
+            padding: 15px 25px;
             border-radius: 30px;
-            margin-top: 10px;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             transition: all 0.3s ease;
-        }
-        
-        .navbar-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
         
         .logo-container {
@@ -71,7 +64,7 @@
         
         .logo-img {
             height: 50px;
-            margin-right: 10px;
+            margin-right: 12px;
             transition: transform 0.3s ease;
         }
         
@@ -86,10 +79,7 @@
         .nav-links {
             display: flex;
             list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 30px;
+            gap: 25px;
         }
         
         .nav-links a {
@@ -97,6 +87,7 @@
             text-decoration: none;
             font-weight: 400;
             transition: color 0.3s;
+            font-size: 1rem;
         }
         
         .nav-links a:hover {
@@ -108,44 +99,72 @@
             cursor: pointer;
             color: var(--accent);
             font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            z-index: 1001;
         }
         
         /* Mobile Nav */
         @media (max-width: 768px) {
             .navbar {
+                padding: 12px 20px;
+                top: 0;
+                border-radius: 0;
                 width: 100%;
                 left: 0;
-                border-radius: 0;
                 margin-top: 0;
-                padding: 10px 0;
             }
             
             .nav-links {
                 position: fixed;
                 top: 70px;
-                left: -100%;
+                left: 0;
                 width: 100%;
-                height: calc(100vh - 70px);
-                background-color: rgba(15, 10, 10, 0.98);
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
+                height: 0;
+                background-color: var(--primary);
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-start;
-                padding-top: 30px;
-                transition: all 0.3s ease;
+                padding: 0;
+                overflow: hidden;
+                transition: all 0.4s ease;
                 z-index: 999;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+                border-radius: 0 0 20px 20px;
             }
             
             .nav-links.active {
-                left: 0;
+                height: auto;
+                max-height: 400px;
+                padding: 20px 0;
+                overflow-y: auto;
             }
             
             .nav-links li {
-                margin: 15px 0;
+                width: 100%;
+                text-align: center;
+                padding: 10px 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.1rem;
+                display: block;
+                padding: 8px 0;
             }
             
             .menu-toggle {
+                display: block;
+            }
+            
+            .menu-toggle .fa-times {
+                display: none;
+            }
+            
+            .nav-links.active ~ .menu-toggle .fa-bars {
+                display: none;
+            }
+            
+            .nav-links.active ~ .menu-toggle .fa-times {
                 display: block;
             }
             
@@ -153,11 +172,12 @@
                 height: 40px;
             }
             
-            .logo-text {
-                font-size: 1.1rem;
+            body {
+                padding-top: 70px;
             }
         }
-        
+
+        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -204,7 +224,7 @@
             font-size: 1rem;
             margin-bottom: 30px;
             opacity: 0.9;
-            color: var(--white); /* Warna emas untuk teks */
+            color: var(--accent);
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
         
@@ -399,48 +419,6 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .feature-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
-        }
-        
-        .feature-item:hover::before {
-            opacity: 0.1;
-        }
-        
-        .feature-item:nth-child(1)::before {
-            background-image: url('images/feature-premium.jpg');
-        }
-        
-        .feature-item:nth-child(2)::before {
-            background-image: url('images/feature-roasting.jpg');
-        }
-        
-        .feature-item:nth-child(3)::before {
-            background-image: url('images/feature-eco.jpg');
-        }
-        
-        .feature-item:nth-child(4)::before {
-            background-image: url('images/feature-passion.jpg');
-        }
-        
-        .feature-item.active {
-            background-color: rgba(166, 123, 91, 0.1);
         }
         
         .feature-icon {
@@ -513,12 +491,8 @@
             font-size: 0.9rem;
         }
         
-        /* Responsive */
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
-            body {
-                padding-top: 70px;
-            }
-            
             .hero h1 {
                 font-size: 3rem;
             }
@@ -535,10 +509,6 @@
                 font-size: 2rem;
             }
             
-            .excellence-item {
-                padding: 0 15px 20px;
-            }
-
             .process-steps {
                 flex-direction: column;
                 align-items: center;
@@ -550,7 +520,7 @@
             }
         }
 
-        /* Animasi untuk logo */
+        /* Animations */
         .logo-click-animation {
             animation: pulse 0.5s ease;
         }
@@ -563,40 +533,40 @@
     </style>
 </head>
 <body>
-    
     <!-- Navbar -->
-<nav class="navbar">
-  <div class="navbar-container">
-    <a href="#" id="logo-link">
-      <img src="images/logo1.png" alt="Selaawi Coffee Logo" class="logo-img">
-    </a>
-    <div class="menu-toggle" id="mobile-menu">
-      <i class="fas fa-bars"></i>
-    </div>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#about">Tentang Kami</a></li>
-      <li><a href="#products">Produk</a></li>
-      <li><a href="#process">Proses</a></li>
-      <li><a href="#excellence">Keunggulan</a></li>
-      <li><a href="#contact">Kontak</a></li>
-    </ul>
-  </div>
-</nav>
+    <nav class="navbar">
+        <div class="logo-container">
+            <a href="#" id="logo-link">
+                <img src="images/logo1.png" alt="Selaawi Coffee Logo" class="logo-img">
+            </a>
+        </div>
+        
+        <button class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#about">Tentang Kami</a></li>
+            <li><a href="#products">Produk</a></li>
+            <li><a href="#process">Proses</a></li>
+            <li><a href="#excellence">Keunggulan</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </nav>
 
-    
     <!-- Hero Section -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-content">
-      <img src="images/logo1.png" alt="Selaawi Coffee Logo" id="hero-logo" style="max-width: 800px; width: 80%; height: auto; margin-bottom: 20px;">
-      
-      <p class="text">Dari lereng Tasikmalaya, kami hadirkan secangkir keaslian</p>
-      <a href="#about" class="btn">Jelajahi Rasa</a>
-    </div>
-  </div>
-</section>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <img src="images/logo1.png" alt="Selaawi Coffee Logo" id="hero-logo" style="max-width: 800px; width: 80%; height: auto; margin-bottom: 20px;">
+                
+                <p class="text">Dari lereng Tasikmalaya, kami hadirkan secangkir keaslian</p>
+                <a href="#about" class="btn">Jelajahi Rasa</a>
+            </div>
+        </div>
+    </section>
 
-    
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
@@ -616,7 +586,7 @@
                     <div class="product-image" style="background-image: url('images/arabika.jpg');"></div>
                     <div class="product-info">
                         <h3>Selaawi Arabika</h3>
-                        <p>Floral, Citrus, Brown Sugar. Diproses dengan metode honey untuk rasa yang kompleks.</p>
+                        <p>Diproses dengan metode natural untuk rasa yang lebih fruity, manis, dan kompleks.</p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -719,28 +689,28 @@
         <div class="container">
             <h2 class="section-title">Kenapa Memilih <span>Kami?</span></h2>
             <div class="features-grid">
-                <div class="feature-item" data-feature="premium">
+                <div class="feature-item">
                     <div class="feature-icon">
                         <i class="fas fa-seedling"></i>
                     </div>
                     <h3>Bahan Premium</h3>
                     <p>Hanya biji kopi terbaik yang dipetik pada masa panen optimal</p>
                 </div>
-                <div class="feature-item" data-feature="roasting">
+                <div class="feature-item">
                     <div class="feature-icon">
                         <i class="fas fa-fire"></i>
                     </div>
                     <h3>Penyangraian Ahli</h3>
                     <p>Diolah oleh penyangrai berpengalaman dengan profil sangrai khusus</p>
                 </div>
-                <div class="feature-item" data-feature="eco">
+                <div class="feature-item">
                     <div class="feature-icon">
                         <i class="fas fa-recycle"></i>
                     </div>
                     <h3>Ramah Lingkungan</h3>
                     <p>Kemasan eco-friendly dan proses produksi berkelanjutan</p>
                 </div>
-                <div class="feature-item" data-feature="passion">
+                <div class="feature-item">
                     <div class="feature-icon">
                         <i class="fas fa-heart"></i>
                     </div>
@@ -781,48 +751,52 @@
         // Mobile Menu Toggle
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-links');
+        const barsIcon = mobileMenu.querySelector('.fa-bars');
+        const timesIcon = mobileMenu.querySelector('.fa-times');
         
         mobileMenu.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+            
+            // Toggle icon
+            if (navLinks.classList.contains('active')) {
+                barsIcon.style.display = 'none';
+                timesIcon.style.display = 'block';
+            } else {
+                barsIcon.style.display = 'block';
+                timesIcon.style.display = 'none';
+            }
         });
         
         // Close menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                barsIcon.style.display = 'block';
+                timesIcon.style.display = 'none';
+                document.body.classList.remove('no-scroll');
             });
         });
         
-        // Feature Item Interaction
-        const featureItems = document.querySelectorAll('.feature-item');
-        
-        featureItems.forEach(item => {
-            item.addEventListener('click', function() {
-                // Remove active class from all items
-                featureItems.forEach(i => {
-                    i.classList.remove('active');
-                });
-                
-                // Add active class to clicked item
-                this.classList.add('active');
-            });
-        });
-
         // Make navbar smaller on scroll
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
-                navbar.style.padding = '10px 0';
-                navbar.style.width = '80%';
-                navbar.style.left = '10%';
+                navbar.style.padding = '12px 20px';
+                if (window.innerWidth > 768) {
+                    navbar.style.width = '80%';
+                    navbar.style.left = '10%';
+                }
             } else {
-                navbar.style.padding = '15px 0';
-                navbar.style.width = '90%';
-                navbar.style.left = '5%';
+                navbar.style.padding = '15px 25px';
+                if (window.innerWidth > 768) {
+                    navbar.style.width = '90%';
+                    navbar.style.left = '5%';
+                }
             }
         });
 
-        // Animasi logo ketika diklik
+        // Logo animation
         const logoLink = document.getElementById('logo-link');
         const heroLogo = document.getElementById('hero-logo');
         
@@ -831,12 +805,10 @@
             const logoImg = this.querySelector('.logo-img');
             logoImg.classList.add('logo-click-animation');
             
-            // Hapus class animasi setelah selesai
             setTimeout(() => {
                 logoImg.classList.remove('logo-click-animation');
             }, 500);
             
-            // Scroll ke atas halaman
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -846,10 +818,16 @@
         heroLogo.addEventListener('click', function() {
             this.classList.add('logo-click-animation');
             
-            // Hapus class animasi setelah selesai
             setTimeout(() => {
                 this.classList.remove('logo-click-animation');
             }, 500);
+        });
+
+        // Initialize navbar state on load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.innerWidth <= 768) {
+                document.querySelector('.navbar').style.borderRadius = '0';
+            }
         });
     </script>
 </body>
